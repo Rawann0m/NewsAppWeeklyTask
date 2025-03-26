@@ -13,7 +13,6 @@ class CategorizedNewsViewModel: ObservableObject {
     @Published var showErrorAlert: Bool = false
     @Published var errorMessage: String = ""
     @Published var allArticles: [Article] = []
-    @Published var currentPage: Int = 1
     @Published var totalArticles: Int = 0
     //to be able to Implement both URLSession and Alamofire i thought it might be better to switch between the two whenever i want
     var useAlamofire: Bool = true
@@ -40,21 +39,21 @@ class CategorizedNewsViewModel: ObservableObject {
         // Mapping of categories to API URLs
         let categoryAPIMapping: [String: [String]] = [
             "Technology": [
-                "https://newsapi.org/v2/top-headlines?sources=techcrunch&pageSize=10&\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
-                "https://newsapi.org/v2/everything?q=apple&from=2025-03-21&to=2025-03-21&sortBy=popularity&pageSize=10&\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
-                "https://newsapi.org/v2/everything?q=tesla&from=2025-03-22&sortBy=publishedAt&pageSize=10&page=\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
+                "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
+                "https://newsapi.org/v2/everything?q=apple&from=2025-03-21&to=2025-03-21&sortBy=popularity&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
+                "https://newsapi.org/v2/everything?q=tesla&from=2025-03-22&sortBy=publishedAt&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
             ],
             "Business": [
-                "https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=10&\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
-                "https://newsapi.org/v2/everything?q=apple&from=2025-03-21&to=2025-03-21&sortBy=popularity&pageSize=10&\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
-                "https://newsapi.org/v2/everything?q=tesla&from=2025-03-22&sortBy=publishedAt&pageSize=10&page=\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
-                "https://newsapi.org/v2/everything?domains=wsj.com&pageSize=10&\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
+                "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
+                "https://newsapi.org/v2/everything?q=apple&from=2025-03-21&to=2025-03-21&sortBy=popularity&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
+                "https://newsapi.org/v2/everything?q=tesla&from=2025-03-22&sortBy=publishedAt&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89",
+                "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
             ],
             "Finance": [
-                "https://newsapi.org/v2/everything?domains=wsj.com&pageSize=10&\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
+                "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
             ],
             "Automotive": [
-                "https://newsapi.org/v2/everything?q=tesla&from=2025-03-22&sortBy=publishedAt&pageSize=10&page=\(currentPage)&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
+                "https://newsapi.org/v2/everything?q=tesla&from=2025-03-22&sortBy=publishedAt&apiKey=fe24dbf8ea434d89a5c230b1e88c8c89"
             ]
         ]
         
